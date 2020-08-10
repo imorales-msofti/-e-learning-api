@@ -12,12 +12,6 @@ class Question(models.Model):
         ('more_than_one', 'More than one answer is correct'),
         ('more_than_one_all_must_correctly', 'More than one answer is correct and all of them must be answered correctly'),
     ])
-    choises = models.CharField(max_length=50, choices=[
-        ('boolean', 'Boolean'),
-        ('only_one', 'Only one answer is correct'),
-        ('more_than_one', 'More than one answer is correct'),
-        ('more_than_one_all_must_correctly', 'More than one answer is correct and all of them must be answered correctly'),
-    ])
     correct_answer = models.CharField(max_length=200)
     score = models.IntegerField()
 
@@ -26,14 +20,19 @@ class Question(models.Model):
 
 
 
-class Answer(models.Model):
+class ChoiseByQuestion(models.Model):
     question = models.ForeignKey('Question', on_delete=models.CASCADE)
-    answer = models.CharField(max_length=200)
+    name = models.CharField(max_length=100)
+    correct = models.BooleanField()
+
+    def __str__(self):
+        return f'{question.name}: {self.name}'
+
+
+class Answer(models.Model):
+    choise_by_question = models.ForeignKey('ChoiseByQuestion', on_delete=models.CASCADE)
     correct = models.BooleanField()
     score = models.IntegerField()
 
     def __str__(self):
         return f'{question.name}: {self.answer}'
-
-
-
