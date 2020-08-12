@@ -1,5 +1,5 @@
 from django.db import models
-
+from django.contrib.postgres.fields import ArrayField
 from apps.lessons.models import Lesson
 
 # Create your models here.
@@ -12,6 +12,10 @@ class Question(models.Model):
         ('more_than_one', 'More than one answer is correct'),
         ('more_than_one_all_must_correctly', 'More than one answer is correct and all of them must be answered correctly'),
     ])
+    posible_answers =  ArrayField(
+            models.CharField(max_length=50, blank=False),
+            size=3,
+        )
     correct_answer = models.CharField(max_length=200)
     score = models.IntegerField()
 
