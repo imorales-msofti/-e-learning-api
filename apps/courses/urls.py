@@ -6,3 +6,7 @@ from rest_framework.routers import DefaultRouter
 router = DefaultRouter()
 router.register(r'', views.CourseViewSet)
 urlpatterns = router.urls
+
+urlpatterns.append(
+    path('<int:course_id>/lessons', views.getLessons)
+)
