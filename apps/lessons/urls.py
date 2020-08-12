@@ -7,6 +7,7 @@ router = DefaultRouter()
 router.register(r'', views.LessonViewSet)
 urlpatterns = router.urls
 
-urlpatterns.append(
-    path('<int:lesson_id>/questions', views.getQuestions)
-)
+urlpatterns += [
+    path('<int:lesson_id>/questions', views.getQuestions),
+    path('<int:lesson_id>/take', views.takeLesson)
+]
