@@ -6,9 +6,7 @@ from rest_framework import viewsets
 # Create your views here.
 
 class LessonViewSet(viewsets.ModelViewSet):
-    """
-    API endpoint that allows users to be viewed or edited.
-    """
+  
     queryset = Lesson.objects.all()
     serializer_class = LessonSerializer
     permission_classes = []
